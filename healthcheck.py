@@ -1,13 +1,17 @@
-import requests
-import time
-import logging
 
+import requests #makes http requests to websites
+import time     #measures how long each site takes to respond
+import logging  #saves results to a log file
+
+
+#creates file called healthcheck.log and saves results with timestamps
 logging.basicConfig(
     filename="healthcheck.log",
     level=logging.INFO,
     format="%(asctime)s - %(message)s"
 )
 
+#reads websites from the urls.txt file and returns as a python list
 def load_urls(filename):
     with open(filename, "r") as file:
         urls = []
@@ -20,12 +24,12 @@ def load_urls(filename):
 
     return urls
 
-
+#checks if website is reachable
 def check_url(url):
     try:
-        start = time.time()
+        start = time.time() #record start time
 
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, timeout=5) #send request to site
 
         end = time.time()
 
