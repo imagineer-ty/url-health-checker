@@ -1,5 +1,7 @@
 # URL Health Checker
 
+![Python CI](https://github.com/imagineer-ty/url-health-checker/actions/workflows/ci.yml/badge.svg)
+
 A Python-based DevOps tool that checks website availability and response times. The project is containerized with Docker and includes a GitHub Actions CI pipeline.
 
 ## Features
