@@ -1,0 +1,41 @@
+#on: runs workflow when pushed to main or open pull req
+#jobs: defines work github actions should do 
+#runs-on: creates a temp ubuntu VM
+#actions/checkout: downloads repo to VM
+#install dependencies: installs python dependencies from requirements.txt
+#run health checker: runs healthcheck.py to check if the app is healthy
+
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run health checker
+        run: |
+          python healthcheck.py
