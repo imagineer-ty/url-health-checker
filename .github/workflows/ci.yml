@@ -39,3 +39,11 @@ jobs:
       - name: Run health checker
         run: |
           python healthcheck.py
+      
+      - name: Build Docker image
+        run: |
+          docker build -t url-health-checker .
+
+      - name: Run Docker container
+        run: |
+          docker run --rm url-health-checker
